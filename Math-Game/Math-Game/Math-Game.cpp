@@ -18,7 +18,7 @@ struct strQuestionRound {
     enOperationtype operation;
     string opt = "";
     string Level = "";
-    enOperationtype randomoperation ;
+    /*enOperationtype randomoperation ;*/
 };
 struct strResult {
     unsigned int totalQuestions = 0;
@@ -72,7 +72,6 @@ int GenerateNumberBasedOnLevel(enQuestionLevel level) {
     default: return RandomNumber(1, 30);
     }
 }
-
 void SetScreenColor(enQuestionStatus status) {
     if (status == Correct) {
         system("Color 2F");
@@ -81,13 +80,11 @@ void SetScreenColor(enQuestionStatus status) {
         system("Color 4F");
     }
 }
-
 int FillYourAnswer() {
     unsigned int userAnswer;
     cin >> userAnswer;
     return userAnswer;
 }
-
 string ChooseSymbol(strQuestionRound& operations) {
     switch (operations.operation) {
     case enOperationtype::Add:
@@ -95,27 +92,17 @@ string ChooseSymbol(strQuestionRound& operations) {
     case enOperationtype::Sub:
         return "-";
     case enOperationtype::Div:
-        return "+";
+        return "/";
     case enOperationtype::Mul:
         return "*";
     default:
         return "Mix";
     }
 }
-
-string Tab(short number) {
-    string t = "";
-    for (short i = 0; i < number + 1; i++) {
-        t += "\t";
-    }
-    return t;
-}
-
 string FindarrQuestionLevel(enQuestionLevel level) {
     string arrquestionlevel[4] = { "Easy", "Medium", "Hard", "Mix" };
     return arrquestionlevel[level - 1];
 }
-
 string CheckResult(strResult result) {
     if (result.rightQuestionsNumber < result.wrongQuestionsNumber) {
         return "Fail :(";
@@ -124,57 +111,53 @@ string CheckResult(strResult result) {
         return "Pass :)";
     }
 }
-
 string FindarrOperationType(enOperationtype& op) {
     string arrOperationType[4] = { "+", "-", "*", "/" };
     return arrOperationType[op - 1];
 }
-
-void ChooseRandomOperations(strQuestionRound& operations) {
-    operations.randomoperation = enOperationtype(RandomNumber(1, 4));
-    switch (operations.randomoperation) {
-    case Add:
-        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
-        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
-        operations.answer = operations.number1 + operations.number2;
-        cout << operations.number1 << endl;
-        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
-        cout << "-------------\n";
-        operations.myAnswer = FillYourAnswer();
-        break;
-    case Sub:
-        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
-        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
-        operations.answer = operations.number1 - operations.number2;
-        cout << operations.number1 << endl;
-        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
-        cout << "-------------\n";
-        operations.myAnswer = FillYourAnswer();
-        break;
-    case Mul:
-        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
-        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
-        operations.answer = operations.number1 * operations.number2;
-        cout << operations.number1 << endl;
-        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
-        cout << "-------------\n";
-        operations.myAnswer = FillYourAnswer();
-        break;
-    case Div:
-        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
-        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
-        operations.answer = operations.number1 / operations.number2;
-        cout << operations.number1 << endl;
-        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
-        cout << "-------------\n";
-        operations.myAnswer = FillYourAnswer();
-        break;
-    }
-}
-
+//void ChooseRandomOperations(strQuestionRound& operations) {
+//    operations.randomoperation = enOperationtype(RandomNumber(1, 4));
+//    switch (operations.randomoperation) {
+//    case Add:
+//        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.answer = operations.number1 + operations.number2;
+//        cout << operations.number1 << endl;
+//        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
+//        cout << "-------------\n";
+//        operations.myAnswer = FillYourAnswer();
+//        break;
+//    case Sub:
+//        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.answer = operations.number1 - operations.number2;
+//        cout << operations.number1 << endl;
+//        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
+//        cout << "-------------\n";
+//        operations.myAnswer = FillYourAnswer();
+//        break;
+//    case Mul:
+//        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.answer = operations.number1 * operations.number2;
+//        cout << operations.number1 << endl;
+//        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
+//        cout << "-------------\n";
+//        operations.myAnswer = FillYourAnswer();
+//        break;
+//    case Div:
+//        operations.number1 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.number2 = GenerateNumberBasedOnLevel(operations.level);
+//        operations.answer = operations.number1 / operations.number2;
+//        cout << operations.number1 << endl;
+//        cout << operations.number2 << "  " << FindarrOperationType(operations.randomoperation) << endl;
+//        cout << "-------------\n";
+//        operations.myAnswer = FillYourAnswer();
+//        break;
+//    }
+//}
 void ChooseOperation(strQuestionRound& operations) {
     switch (operations.operation) {
-
         case Add:
             operations.number1 = GenerateNumberBasedOnLevel(operations.level);
             operations.number2 = GenerateNumberBasedOnLevel(operations.level);
@@ -211,23 +194,29 @@ void ChooseOperation(strQuestionRound& operations) {
             operations.myAnswer = FillYourAnswer();
             break;
         case Mix2:
-            ChooseRandomOperations(operations);
+            operations.operation = enOperationtype(RandomNumber(1, 4));
+            ChooseOperation(operations);
+            /*ChooseRandomOperations(operations);*/
     }
+}    
+string Checkarrstatus(enQuestionStatus status) {
+    string arrstatus[2] = {"Correct", "Wrong"};
+    return arrstatus[status - 1];
 }
-     
-        
-    
-
 void QuestionRound(strQuestionRound & round, strResult result) {
         ChooseOperation(round);
         if (round.myAnswer == round.answer) {
             round.status = Correct;
+            SetScreenColor(round.status);
+            cout << Checkarrstatus(round.status)<<'\n';
         }
         else {
             round.status = Wrong;
+            SetScreenColor(round.status);
+            cout << Checkarrstatus(round.status) << '\n';
             cout << "Correct answer is: " << round.answer << endl;
         }
-        SetScreenColor(round.status);
+        
  }
 void QuizeResult(strResult result, strQuestionRound round) {
 
@@ -239,11 +228,19 @@ void QuizeResult(strResult result, strQuestionRound round) {
         cout << "Operation type: " << round.opt << '\n';
         cout << "Number of right question are: " << result.rightQuestionsNumber << endl;
         cout << "Number of wrong question are: " << result.wrongQuestionsNumber << "\n\n";
-        SetScreenColor(round.status);
+        if (result.rightQuestionsNumber >= result.wrongQuestionsNumber) {
+            round.status = Correct;
+            SetScreenColor(round.status);
+        }
+        else {
+            round.status = Wrong;
+            SetScreenColor(round.status);
+        }
+       
 
     }
 
- void StartQuiz(unsigned int questionNumber, enQuestionLevel level, enOperationtype operation) {
+void StartQuiz(unsigned int questionNumber, enQuestionLevel level, enOperationtype operation) {
 
         strQuestionRound round;
         unsigned int rightQuestionsNumber = 0;
@@ -265,7 +262,6 @@ void QuizeResult(strResult result, strQuestionRound round) {
                 wrongQuestionsNumber++;
 
             }
-
         }
         round.Level = FindarrQuestionLevel(round.level);
         round.opt = ChooseSymbol(round);
@@ -275,12 +271,12 @@ void QuizeResult(strResult result, strQuestionRound round) {
         QuizeResult(result, round);
     }
 
-    void ShowQuizEndScreen() {
+void ShowQuizEndScreen() {
         cout << "__________+++++[QuizEnd]+++++______________\n";
         cout << "_____________________________________________\n";
-    }
+}
 
-    void StartQuiz() {
+void StartQuiz() {
         char start = 'y';
         do {
             unsigned int questionNumber = ReadAPositiveNumber("Enter a number of questions that you want: \n");
@@ -294,13 +290,13 @@ void QuizeResult(strResult result, strQuestionRound round) {
             Reset();
         } while (start == 'y' || start == 'Y');
 
-    }
+}
 
-    int main() {
+int main() {
         srand((unsigned)time(NULL));
         StartQuiz();
         return 0;
-    }
+}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
