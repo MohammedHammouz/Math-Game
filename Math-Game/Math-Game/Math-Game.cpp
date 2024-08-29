@@ -188,7 +188,8 @@ void ChooseOperation(strQuestionRound& operations) {
         case Div:
             operations.number1 = GenerateNumberBasedOnLevel(operations.level);
             operations.number2 = GenerateNumberBasedOnLevel(operations.level);
-            cout << operations.number1 << "";
+            operations.answer = operations.number1 / operations.number2;
+            cout << operations.number1 << "\n";
             cout << operations.number2 << "  " << ChooseSymbol(operations) << "\n";
             cout << "-------------\n";
             operations.myAnswer = FillYourAnswer();

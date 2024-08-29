@@ -1,4 +1,1 @@
-﻿  Math-Game.cpp
-C:\Users\m7ama\source\repos\Math-Game\Math-Game\Math-Game.cpp(252,22): warning C4101: 'status1': unreferenced local variable
-C:\Users\m7ama\source\repos\Math-Game\Math-Game\Math-Game.cpp(285,26): warning C4101: 'status': unreferenced local variable
-  Math-Game.vcxproj -> C:\Users\m7ama\source\repos\Math-Game\x64\Debug\Math-Game.exe
+﻿  Math-Game.vcxproj -> C:\Users\m7ama\source\repos\Math-Game\x64\Debug\Math-Game.exe

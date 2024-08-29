@@ -9,3 +9,5 @@
 *.tlog
 *.lastbuildstate
 *Min-Game
+*.json
+*.db
